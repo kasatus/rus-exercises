@@ -1,0 +1,11 @@
+
+*.[oa]
+*~
+*.opendb
+*.data
+*.log
+*.tlog
+*.obj
+Win32Project1/Win32Project1/files_to_send/
+Win32Project1/Debug/
+Win32Project1/Win32Project1/Debug/
