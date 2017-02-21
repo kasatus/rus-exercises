@@ -237,6 +237,7 @@ void main() {
 	int a = 0;
 
 
+
 	////p2.7
 	//srand(time(NULL));
 	//char c = (rand() % 100);
