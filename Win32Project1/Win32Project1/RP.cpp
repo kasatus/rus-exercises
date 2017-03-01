@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <ctime> 
 using namespace std;
+#define PI 3.14159265
 
 void queenHorse(int x1, int y1, int x2, int y2) {
 	// queen beats horse:
@@ -226,17 +227,89 @@ int numberOfFlights(int *M, int cnt, int maxWeight) {
 	return total;
 }
 
-void main() {
-	//p2.8
-	int cnt = 15;
-	int maxWeight = 50;
+class Matrix {
+	int n;
+	int** M;
+public:
+	Matrix(int num);
+	~Matrix();
+	void fillMatrix();
+	void printMatrix();
+};
 
-	int M[15];
-	assignWeight(M, cnt, maxWeight);
-	int total = numberOfFlights(M, cnt, maxWeight);
-	int a = 0;
-	// hm
-	//yoyo :) 
+Matrix::Matrix(int num) {
+	n = num;
+	M = new int*[n];
+	for (int i = 0; i < n; i++) {
+		M[i] = new int[n];
+	}
+	fillMatrix();
+	printMatrix();
+}
+Matrix::~Matrix() {
+	delete[] M;
+	for (int i = 0; i < n; i++) {
+		delete[] *M;
+	}
+}
+void Matrix::fillMatrix() {
+	for (int i = 0; i < n; i++) {
+		for (int k = 0; k < n; k++) {
+			if (sin((i * n + k + 1) * PI / n) > 0)
+				M[i][k] = i * n + k + 1;
+			else
+				M[i][k] = i * n + n - k;
+		}
+	}
+}
+void Matrix::printMatrix() {
+	for (int i = 0; i < n; i++) {
+		printf("\n");
+		for (int k = 0; k < n; k++) {
+			printf("%d ", M[i][k]);
+		}
+	}
+}
+
+class Square {
+	int n;
+	double sum;
+public:
+	Square(int n);
+	void countSum();
+	void printSum();
+};
+
+void Square::printSum() {
+	printf("sum = %f", sum);
+}
+
+void Square::countSum() {
+
+}
+
+Square::Square(int num) {
+	n = num;
+}
+void main() {
+
+	//p2.10
+	Square a(4);
+	int b = 12 + 1;
+
+
+	////p2.9
+	//
+	//Matrix mat1(10);
+
+	////p2.8
+	//int cnt = 15;
+	//int maxWeight = 50;
+
+	//int M[15];
+	//assignWeight(M, cnt, maxWeight);
+	//int total = numberOfFlights(M, cnt, maxWeight);
+	//int a = 0;
 
 
 	////p2.7
