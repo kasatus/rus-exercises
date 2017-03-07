@@ -276,7 +276,7 @@ class Square {
 	double sum;
 public:
 	Square(int n);
-	void countSum();
+	double countSum(int cnt);
 	void printSum();
 };
 
@@ -284,18 +284,170 @@ void Square::printSum() {
 	printf("sum = %f", sum);
 }
 
-void Square::countSum() {
-
+double Square::countSum(int cnt) {
+	if (cnt > 0) {
+		sum = sqrt(cnt + countSum(cnt - 3));
+		return sum;
+	}
+	else
+		return 0;
 }
 
 Square::Square(int num) {
 	n = num;
+	sum = 0;
+	int cnt = n;
+	sum = countSum(cnt);
 }
-void main() {
 
-	//p2.10
-	Square a(4);
-	int b = 12 + 1;
+
+double calcSquare(int n, double sum) {
+	if (n > 0) {
+		sum = sqrt(n + calcSquare(n - 3, sum));
+		return sum;
+	}
+	else
+		return sum;
+	
+}
+
+double calcFraction(int n, double sum, double max) {
+	if (n < max) {
+		double p = calcFraction(n + 1, sum, max);
+		sum = 1 / (n + p);
+		return sum;
+	}
+	else
+		return 1 / max;
+
+}
+
+int reverseN(int n, int rev) {
+	if (n == 0) return rev;
+	return rev = reverseN(n / 10, rev * 10 + n % 10);
+}
+
+void main() {
+	//p2.18
+	for (int i = 1000; i < 10000; i++) {
+		int t = i / 1000;
+		int h = i % 1000 / 100;
+		int d = i % 100 / 10;
+		int e = i % 10;
+		int sum = t + h + d + e;
+		if (t != h && d != e && t * 10 + h - d * 10 - e == sum)
+			printf("\nyay: %d", i);
+	}
+
+	////2.17
+	//int a = 12934;
+	//int b = reverses(a);
+	//a = a % 10;
+	//srand(time(NULL));
+	//int n = rand() % 6000 + 1;
+	//int uu = reverseN(n, 0);
+	//int y = n;
+	//int remainder, reverse = 0;
+	//while (n != 0) {
+	//	remainder = n % 10;
+	//	reverse = reverse * 10 + remainder;
+	//	n = n / 10;
+	//}
+	//printf("n: %d, rev: %d", y, reverse);
+
+
+	////p2.16
+	//int a = 100;
+	//srand(time(NULL));
+	//while (1) {
+	//	int n = rand() % 9999;
+	//	if (n > 1000) {
+	//		int t = n / 1000; // if t = 0 => t = 1 and so on..
+	//		int h = (n % 1000) / 100;
+	//		int d = (n % 100) / 10;
+	//		if (!(n % t) && !(n % h) && !(n % d)) {
+	//			printf("%d", n);
+	//			break;
+	//		}
+	//	}
+	//}
+
+	////p2.15
+	//srand(time(NULL));
+	//int i = 0;
+	//int n = rand() % 999;
+	//if (n == 0) n += 1;
+	//while (i != n) {
+	//	n = rand() % 999;
+	//	if (n == 0) n += 1;
+	//	if (n == 350) n += 1;
+	//	i = n % 100;
+	//	i *= 7;
+	//}
+	//printf("%d", n);
+
+
+	////p2.14
+	//srand(time(NULL));
+	//while (1) {
+	//	int n = rand() % 9999;
+	//	if (n > 1000) {
+	//		printf("%d ", n);
+	//		int t = n / 1000;
+	//		int h = (n % 1000) / 100;
+	//		int d = (n % 100) / 10;
+	//		int e = n % 10;
+	//		int diff1 = t - h;
+	//		int diff2 = h - d;
+	//		int diff3 = d - e;
+	//		if ((diff1) == (diff2) && diff2 == (diff3)) {
+	//			printf("\nyay!");
+	//			break;
+	//		}
+	//	}
+	//}
+
+
+	////p2.13
+	//srand(time(NULL));
+	//int n = rand() % 9999;
+	//n *= 3;
+	//int cnt = n;
+	//while (cnt != 153) {
+	//	int t = (cnt / 1000) * 1000;
+	//	int h = ((cnt - t) / 100 ) * 100;
+	//	int d = ((cnt - t - h) / 10) * 10;
+	//	int e = cnt - t - h - d;
+	//	t = t / 1000;
+	//	h = h / 100;
+	//	d = d / 10;
+	//	cnt = t * t * t + h * h * h + d * d * d + e * e * e;
+	//	printf("%d ", cnt);
+	//}
+
+	////p2.12
+	//srand(time(NULL));
+	//int p = rand() % 99;
+	//if (p < 3)
+	//	p += 2;
+	//printf("%d ", p);
+	//while (p != 1) {
+	//	if (p % 2 == 0)
+	//		p = p / 2;
+	//	else
+	//		p = 3 * p + 1;
+	//	printf("%d ", p);
+	//}
+
+
+	////p2.11
+	//double a = calcFraction(1, 0, 100);
+	//double b = 12 | 12;
+
+	////p2.10
+	//double aa = calcSquare(98, 0); // recursion
+	//Square a(98); //class + recursion
+	//int b = 12 + 1;
 
 
 	////p2.9
